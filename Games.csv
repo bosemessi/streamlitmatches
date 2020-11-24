@@ -1,0 +1,12 @@
+,gamename,gameid,competition,hometeam,awayteam,homeid,awayid,filename
+0,Barcelona-Villarreal,1491975,LaLiga,Barcelona,Villarreal,65,839,1491975.json
+1,Celta Vigo-Barcelona,1491984,LaLiga,Celta Vigo,Barcelona,62,65,1491984.json
+2,Barcelona-Sevilla,1491995,LaLiga,Barcelona,Sevilla,65,67,1491995.json
+3,Atletico-Barcelona,1492008,LaLiga,Atletico,Barcelona,63,65,1492008.json
+4,Getafe-Barcelona,1492021,LaLiga,Getafe,Barcelona,819,65,1492021.json
+5,Barcelona-Real Madrid,1492033,LaLiga,Barcelona,Real Madrid,65,52,1492033.json
+6,Deportivo Alaves-Barcelona,1492047,LaLiga,Deportivo Alaves,Barcelona,60,65,1492047.json
+7,Barcelona-Real Betis,1492327,LaLiga,Barcelona,Real Betis,65,54,1492327.json
+0,Barcelona-Ferencvaros,1508910,UCL,Barcelona,Ferencvaros,65,994,1508910.json
+1,Juventus-Barcelona,1508912,UCL,Juventus,Barcelona,87,65,1508912.json
+2,Barcelona-Dynamo Kyiv,1508913,UCL,Barcelona,Dynamo Kyiv,65,350,1508913.json
