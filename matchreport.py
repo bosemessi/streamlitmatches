@@ -352,19 +352,27 @@ def PPDAcalculator(Df,homeid,awayid):
     return round(awaypass/(homedef+homefouls)),round(homepass/(awaydef+awayfouls))
 
 def datatable(Df,hometeam,homeid,awayteam,awayid):
-    hg = len(Df[(Df.teamId==homeid)&(Df.type_displayName=='Goal')])
-    hsh = len(Df.query("(teamId==@homeid)&(type_displayName in ['SavedShot', 'ShotOnPost', 'MissedShots', 'Goal'])"))
-    hsot = len(Df.query("(teamId==@homeid)&(type_displayName in ['SavedShot'])&(goalMouthY<=44)&(goalMouthY>=36)&\
-                (blockedX>=116)"))+hg
+    hg = len(Df[(Df.teamId==homeid)&(Df.outcome=='Successful')&(Df.type_displayName=='Goal')])
+    aog = len(Df[(Df.teamId==awayid)&(Df.outcome=='OwnGoal')&(Df.type_displayName=='Goal')])
+    hsh = len(Df.query("(teamId==@homeid)&(type_displayName in ['SavedShot', 'ShotOnPost', 'MissedShots'])")) + hg
+#     hsot = len(Df.query("(teamId==@homeid)&(type_displayName in ['SavedShot'])&(goalMouthY<=44)&(goalMouthY>=36)&\
+#                 (blockedX>=116)"))+hg
+    hsot = len(Df.query("(teamId==@awayid)&(type_displayName in ['Save'])&\
+                        (position=='GK')"))+hg
+    hg = hg + aog
     hp = len(Df[(Df.teamId==homeid)&(Df.type_displayName=='Pass')])
     hps = len(Df[(Df.teamId==homeid)&(Df.type_displayName=='Pass')
                       &(Df.outcomeType_displayName=='Successful')])
     hpp = round(hps*100/hp)
     hppda = PPDAcalculator(Df,homeid,awayid)[0]
-    ag = len(Df[(Df.teamId==awayid)&(Df.type_displayName=='Goal')])
-    ash = len(Df.query("(teamId==@awayid)&(type_displayName in ['SavedShot', 'ShotOnPost', 'MissedShots', 'Goal'])"))
-    asot = len(Df.query("(teamId==@awayid)&(type_displayName in ['SavedShot'])&(goalMouthY<=44)&(goalMouthY>=36)&\
-                (blockedX>=116)"))+ag
+    ag = len(Df[(Df.teamId==awayid)&(Df.outcome=='Successful')&(Df.type_displayName=='Goal')]) 
+    hog = len(Df[(Df.teamId==homeid)&(Df.outcome=='OwnGoal')&(Df.type_displayName=='Goal')])
+    ash = len(Df.query("(teamId==@awayid)&(type_displayName in ['SavedShot', 'ShotOnPost', 'MissedShots'])")) + ag
+#     asot = len(Df.query("(teamId==@awayid)&(type_displayName in ['SavedShot'])&(goalMouthY<=44)&(goalMouthY>=36)&\
+#                 (blockedX>=116)"))+ag
+    asot = len(Df.query("(teamId==@homeid)&(type_displayName in ['Save'])&\
+                        (position=='GK')"))+ag
+    ag = ag + hog
     ap = len(Df[(Df.teamId==awayid)&(Df.type_displayName=='Pass')])
     aps = len(Df[(Df.teamId==awayid)&(Df.type_displayName=='Pass')
                       &(Df.outcomeType_displayName=='Successful')])
@@ -373,8 +381,8 @@ def datatable(Df,hometeam,homeid,awayteam,awayid):
     aposs = round(100 - hposs)
     appda = PPDAcalculator(Df,homeid,awayid)[1]
 
-    datalist = [[hg,ag],[hsh,ash],[hsot,asot],[hp,ap],[hps,aps],[hposs,aposs],[hpp,app],[hppda,appda]]
-    datanamelist = ['Goals','Total Shots','Total Shots on Target','Total Passes',
+    datalist = [[hg,ag],[hsh,ash],[hp,ap],[hps,aps],[hposs,aposs],[hpp,app],[hppda,appda]]
+    datanamelist = ['Goals','Total Shots','Total Passes',
                    'Successful Passes','Possession %','Pass Completion %','PPDA']
     teamlist = [hometeam,awayteam]
     displaydf = pd.DataFrame(data=datalist, index=datanamelist, columns=teamlist).astype(int)
@@ -386,11 +394,11 @@ def datatable(Df,hometeam,homeid,awayteam,awayid):
 #        figsize=(10,6)
       )
     the_table = plt.table(cellText=displaydf.values,
-                          cellColours=[['#082630','#082630'] for i in range(8)],
+                          cellColours=[['#082630','#082630'] for i in range(7)],
                           rowLabels=displaydf.index,
                           rowLoc='right',
                           colLabels=displaydf.columns,
-                          rowColours=['#082630' for i in range(8)],
+                          rowColours=['#082630' for i in range(7)],
                           colColours=['#082630' for i in range(2)],
                           loc='center',
                          fontsize=25)
