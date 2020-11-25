@@ -25,8 +25,8 @@ from itertools import chain
 from ast import literal_eval
 from matplotlib.colors import LinearSegmentedColormap
 from scipy.spatial.distance import cdist 
-mpl.rcParams['font.family'] = 'Slabo 27px'
-anotherfont = 'Oxygen'
+# mpl.rcParams['font.family'] = 'Slabo 27px'
+# anotherfont = 'Oxygen'
 mpl.rcParams['figure.facecolor'] = '#082630'
 mpl.rcParams['axes.facecolor'] = '#082630'
 mpl.rcParams['axes.labelcolor'] = '#edece9'
@@ -336,7 +336,7 @@ def passtypes(Df,team,teamid):
     ax[1,2].set_title('Attacking Passes'+'\n'+'From Zone 14',fontsize=15)
     fig.suptitle(team+' Progressive/Attacking Passes',fontsize=20)
     fig.text(0.05, -0.05, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.9, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.9, width=0.07)
     return fig
 
 def PPDAcalculator(Df,homeid,awayid):
@@ -412,7 +412,7 @@ def datatable(Df,hometeam,homeid,awayteam,awayid):
     fig.text(0.05, 0.05, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
     # fig.text(0.05, -0.01, "Data from fbref and Understat",
     #          fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0, width=0.07)
     return fig
 
 def defensesmap(Df,team,teamid):
@@ -452,7 +452,7 @@ def defensesmap(Df,team,teamid):
      "made high up in opposition territory",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.0, 0.05, "Goal protecting defensive activities include tackles, interceptions, defensive aerials, challenges,"
         +'\n'+"clearances and blocked passes deep in own territory",fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
     return fig
 
 def badpasses(Df,hometeam,homeid):
@@ -481,7 +481,7 @@ def badpasses(Df,hometeam,homeid):
     ax[1].set_title(hometeam+' Unsuccessful Passes'+'\n'+'from middle 3rd',fontsize=20)
     # fig.text(0.0, 0.05, "All unsuccessful passes originating from defensive third of the pitch",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.0, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.0, width=0.07)
     return fig
 
 def turnovermap(Df,hometeam,homeid,awayteam,awayid):
@@ -514,7 +514,7 @@ def turnovermap(Df,hometeam,homeid,awayteam,awayid):
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.0, 0.05, "Turnover creating defensive activities include tackles, interceptions, aerials, clearances,"
         +'\n'+" and blocked passes leading to winning possession",fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
     return fig
 
 def keypasses(Df,hometeam,homeid,awayteam,awayid):
@@ -541,7 +541,7 @@ def keypasses(Df,hometeam,homeid,awayteam,awayid):
     ax[0].set_title(hometeam+'\n'+'Key Passes',fontsize=30)        
     ax[1].set_title(awayteam+'\n'+'Key Passes',fontsize=30)
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
     return fig
 
 def fieldtilt(Df,homeid,awayid):
@@ -603,7 +603,7 @@ def plotter(Df,hometeam,homeid,awayteam,awayid):
 	         highlight_weights=['bold','bold'],string_weight='bold',fontsize=20,color='#edece9')
 	            
 	fig.text(0.05, -0.025, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=9,color='#edece9')
-	add_image(bu_alt, fig, left=0.95, bottom=0.97, width=0.05)
+	# add_image(bu_alt, fig, left=0.95, bottom=0.97, width=0.05)
 	plt.tight_layout()
 	return fig
 
@@ -643,7 +643,7 @@ def progpassplotter(Df,team,teamid):
 		ax[i//4,i%4].remove()
 
 	fig.text(0.05, -0.04, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
-	add_image(bu_alt, fig, left=0.85, bottom=-0.07, width=0.05)
+	# add_image(bu_alt, fig, left=0.85, bottom=-0.07, width=0.05)
 	fig_htext(s = "<Completed Progressive Passes> by all players of "+team,
 	          x = 0.1, y = 1, highlight_colors = ['#a1d76a'],
 	          highlight_weights=['bold'],
@@ -676,7 +676,7 @@ def switches(Df,hometeam,homeid,awayteam,awayid):
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.0, 0.05, "Red lines for unsuccessful switches, yellow for successful ones",
                                                         fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
     return fig
 
 def takeonmap(Df,hometeam,homeid,awayteam,awayid):
@@ -705,7 +705,7 @@ def takeonmap(Df,hometeam,homeid,awayteam,awayid):
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.0, 0.05, "Red markers for unsuccessful takeons, yellow for successful ones",
                                                         fontstyle="italic",fontsize=15,color='#edece9')
-    add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
+    # add_image(bu_alt, fig, left=0.9, bottom=0.01, width=0.07)
     return fig
 
 def touchmap(Df,team,teamid):
@@ -729,7 +729,7 @@ def touchmap(Df,team,teamid):
     
     fig.text(0.0, 0.0, "Created by Soumyajit Bose / @Soumyaj15209314",fontstyle="italic",fontsize=15,color='#edece9')
     fig.text(0.3, 1.01, team+" Touch-based heatmaps",fontsize=25,color='#edece9')
-    add_image(bu_alt, fig, left=0.95, bottom=0.97, width=0.07)
+    # add_image(bu_alt, fig, left=0.95, bottom=0.97, width=0.07)
     return fig
 
 def passmap(Df,teamname,teamid,min1,max1):
@@ -830,7 +830,7 @@ def passmap(Df,teamname,teamid,min1,max1):
 			 "Width of line is proportional to number of passes exchanged between two players"+"\n"+
 			 "A minimum of 1 pass need to be exchanged to show up as a line",
 			 fontstyle="italic",fontsize=25,color='#edece9')
-	add_image(bu_alt, fig, left=0.9, bottom=-0.05, width=0.07)
+	# add_image(bu_alt, fig, left=0.9, bottom=-0.05, width=0.07)
 	return fig
 
 st.title("Match Reports")
