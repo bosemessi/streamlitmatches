@@ -7,6 +7,7 @@ import math
 import pandas as pd
 import ast
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import RendererAgg
 from mplsoccer.pitch import Pitch, add_image
 from mplsoccer.statsbomb import read_event, EVENT_SLUG
 import numpy as np
@@ -860,42 +861,44 @@ if((teams==hometeam)|(teams==awayteam)):
 else:
 	viztype = st.sidebar.selectbox('Choose visualisation type',['Data Table','Turnovers','Take Ons', 'Switches',  
 				'Field Tilt', 'Key Passes'])
-if(viztype=='Dangerous Passes'):
-	fig = passtypes(match,teams,teamid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Data Table'):
-	fig = datatable(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Defence Maps'):
-	fig = defensesmap(match,teams,teamid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Bad Passes'):
-	fig = badpasses(match,teams,teamid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Turnovers'):
-	fig = turnovermap(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Key Passes'):
-	fig = keypasses(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Field Tilt'):
-	fig = plotter(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Progressive Passes'):
-	fig = progpassplotter(match,teams,teamid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Switches'):
-	fig = switches(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Take Ons'):
-	fig = takeonmap(match,hometeam,homeid,awayteam,awayid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Touch Heatmaps'):
-	fig = touchmap(match,teams,teamid)
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
-elif(viztype=='Pass maps'):
-	mintime = min(match.expandedMinute)
-	maxtime = max(match.expandedMinute)
-	x = st.slider("Expanded Minutes", mintime, maxtime, (mintime, maxtime), 0.5)
-	fig = passmap(match,teams,teamid,x[0],x[1])
-	st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+_lock = RendererAgg.lock
+with _lock:
+	if(viztype=='Dangerous Passes'):
+		fig = passtypes(match,teams,teamid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Data Table'):
+		fig = datatable(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Defence Maps'):
+		fig = defensesmap(match,teams,teamid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Bad Passes'):
+		fig = badpasses(match,teams,teamid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Turnovers'):
+		fig = turnovermap(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Key Passes'):
+		fig = keypasses(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Field Tilt'):
+		fig = plotter(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Progressive Passes'):
+		fig = progpassplotter(match,teams,teamid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Switches'):
+		fig = switches(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Take Ons'):
+		fig = takeonmap(match,hometeam,homeid,awayteam,awayid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Touch Heatmaps'):
+		fig = touchmap(match,teams,teamid)
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
+	elif(viztype=='Pass maps'):
+		mintime = min(match.expandedMinute)
+		maxtime = max(match.expandedMinute)
+		x = st.slider("Expanded Minutes", mintime, maxtime, (mintime, maxtime), 0.5)
+		fig = passmap(match,teams,teamid,x[0],x[1])
+		st.pyplot(fig,bbox_inches="tight",dpi=300,facecolor=fig.get_facecolor())
