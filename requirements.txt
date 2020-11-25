@@ -2,5 +2,6 @@ streamlit==0.69.1
 scipy
 pandas
 matplotlib
+seaborn
 mplsoccer==0.0.21
 highlight_text==0.0.4
