@@ -1,6 +1,5 @@
 #Imports
 import os; import sys;
-import tqdm
 import requests
 import mimetypes
 import zipfile
